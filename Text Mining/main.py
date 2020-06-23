@@ -77,7 +77,7 @@ idf = sc.broadcast(raw9)
 tfidf = counts.map(lambda element: (element[0], element[1]*idf.value[element[0][1]]))
 
 final40 = []
-for x in os.listdir('./DATA-1'):
+for x in os.listdir('./DATA'):
 	tfidf = tfidf.map(lambda element: ((os.path.basename(element[0][0]), element[0][1]), element[1]))
 	final40.extend(tfidf.top(5, key = lambda element: element[1] if element[0][0] == x else 0))
 print(final40)
@@ -87,7 +87,7 @@ for element in final40:
 	result[word] = count
 
 
-with open('./sp4.json' , 'w') as fp:
+with open('./sp4(TF-IDF).json' , 'w') as fp:
 	json.dump(result, fp, indent = 2)
 
 #countscore = counts.map(lambda element: (element, element[1]*idf.value[element]))
